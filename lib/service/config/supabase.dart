@@ -1,0 +1,3 @@
+var supabaseUrl = 'https://svsjevdfkfagcbhtrfgd.supabase.co';
+var supabaseAnonKey =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2c2pldmRma2ZhZ2NiaHRyZmdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUzMDgzMjYsImV4cCI6MjAzMDg4NDMyNn0.jLwk9HTIfz351sABlSzHoF7uN0xhZ82fIcwyYi3kJHQ';

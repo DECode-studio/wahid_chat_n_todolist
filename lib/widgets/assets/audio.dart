@@ -1,0 +1,1 @@
+const audioPath = 'assets/audio';
