@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
+import 'package:wahid_chat_n_todolist/page/main.dart';
 
 var appRoutes = <GetPage<dynamic>>[
-  // Service Page
-  // GetPage(
-  //   name: '/splash',
-  //   page: () => const SplashPage(),
-  //   transition: Transition.fadeIn,
-  // ),
+  GetPage(
+    name: '/',
+    page: () => const MainPage(),
+    transition: Transition.fadeIn,
+  ),
 ];
