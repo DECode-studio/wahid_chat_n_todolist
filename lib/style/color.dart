@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 // Origin Color
-var blue_1 = const Color(0xff111827);
-var blue_2 = const Color(0xff373739);
-var blue_3 = const Color(0xff5C5C5F);
+var blue_1 = const Color(0xff1675F2);
+var blue_2 = const Color(0xff3889F2);
+var blue_3 = const Color(0xff8DB9F2);
 
 var green_1 = const Color(0xff00731F);
 var green_2 = const Color(0xff008821);
