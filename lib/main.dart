@@ -21,7 +21,7 @@ class MenuKitaApp extends StatelessWidget {
     return GetBuilder<CoreAppController>(
       init: CoreAppController(),
       builder: (controller) => GetMaterialApp(
-        title: 'Menu Kita',
+        title: 'Chat n ToDoList',
         theme: ThemeData.light(),
         debugShowCheckedModeBanner: false,
         scrollBehavior: MyCustomScrollBehavior(),

@@ -15,7 +15,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return GetBuilder<MainPageController>(
+    return GetX<MainPageController>(
       init: MainPageController(),
       builder: (controller) => Scaffold(
         backgroundColor: white,
@@ -28,7 +28,7 @@ class MainPage extends StatelessWidget {
         ),
         body: screenPage(controller, size),
         floatingActionButtonLocation: ExpandableFab.location,
-        floatingActionButton: fab(),
+        floatingActionButton: fab(controller, size),
       ),
     );
   }
