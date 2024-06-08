@@ -861,6 +861,12 @@ var bold_12_5 = GoogleFonts.inter(
   fontWeight: FontWeight.bold,
 );
 
+TextStyle bold_12_6(Color color) => GoogleFonts.inter(
+      color: color,
+      fontSize: 12,
+      fontWeight: FontWeight.bold,
+    );
+
 var normal_12_1 = GoogleFonts.inter(
   color: mainText,
   fontSize: 12,

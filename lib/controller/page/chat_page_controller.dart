@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 import 'package:wahid_chat_n_todolist/controller/data/local/chat.dart';
 import 'package:wahid_chat_n_todolist/controller/data/local/inbox.dart';
 import 'package:wahid_chat_n_todolist/controller/data/local/participant.dart';
@@ -11,18 +12,17 @@ import 'package:wahid_chat_n_todolist/model/room.dart';
 import 'package:wahid_chat_n_todolist/model/user.dart';
 import 'package:wahid_chat_n_todolist/service/function/delay.dart';
 
-class InboxPageController extends GetxController {
+class ChatPageController extends GetxController {
   final MainPageController? controller;
-  InboxPageController({this.controller});
+  ChatPageController({this.controller});
 
-  var txt_search = TextEditingController();
-
-  var listInbox = <RoomModel>[].obs;
+  var roomData = RoomModel().obs;
   var listChat = <ChatModel>[].obs;
   var listParticipant = <ParticipantModel>[].obs;
   var listUser = <UserModel>[].obs;
 
-  var searchData = ''.obs;
+  var txt_chat = TextEditingController();
+
   var loadData = true.obs;
 
   @override
@@ -35,13 +35,18 @@ class InboxPageController extends GetxController {
   void getData() async {
     loadData.value = true;
 
-    listInbox.value = inboxLocalData;
-    listInbox.sort((a, b) => b.createRoom!.compareTo(a.createRoom!));
+    roomData.value = inboxLocalData
+        .where((e) => e.idRoom == controller?.detailWindow.value)
+        .first;
 
-    listChat.value = chatLocalData;
+    listChat.value = chatLocalData
+        .where((e) => e.idRoom == controller?.detailWindow.value)
+        .toList();
     listChat.sort((a, b) => a.createChat!.compareTo(b.createChat!));
 
-    listParticipant.value = participantLocalData;
+    listParticipant.value = participantLocalData
+        .where((e) => e.idRoom == controller?.detailWindow.value)
+        .toList();
 
     listUser.value = userLocalData;
     listUser.sort((a, b) => a.createUser!.compareTo(b.createUser!));
@@ -50,44 +55,31 @@ class InboxPageController extends GetxController {
     loadData.value = false;
   }
 
-  void setFilter({
-    required String mode,
-  }) {
-    if (mode == 'search') {
-      searchData.value = txt_search.text;
-    }
-  }
-
-  List<RoomModel> inboxData() {
-    var data = listInbox;
-
-    if (searchData.value != '') {
-      data = data
-          .where((e) =>
-              e.nameRoom.toString().toLowerCase() ==
-                  searchData.value.toLowerCase() ||
-              e.nameRoom
-                  .toString()
-                  .toLowerCase()
-                  .contains(searchData.value.toLowerCase()) ||
-              chatParticipant(e).toLowerCase() ==
-                  searchData.value.toLowerCase() ||
-              chatParticipant(e)
-                  .toLowerCase()
-                  .contains(searchData.value.toLowerCase()))
-          .toList()
-          .obs;
+  void actionMethod(String mode) {
+    if (mode == 'back') {
+      controller?.detailWindow.value = '';
     }
 
-    return data;
-  }
+    if (mode == 'exit') {
+      controller?.viewWindow.value = '';
+      controller?.detailWindow.value = '';
+    }
 
-  ChatModel lasChat(
-    RoomModel data,
-  ) {
-    var chat = chatLocalData.where((e) => e.idRoom == data.idRoom).toList();
+    if (mode == 'send') {
+      var chat = ChatModel(
+        idChat: const Uuid().v4(),
+        idRoom: roomData.value.idRoom,
+        idSender: '1',
+        dataChat: txt_chat.text,
+        createChat: DateTime.now(),
+        statusChat: true,
+      );
 
-    return chat.last;
+      listChat.add(chat);
+      chatLocalData.add(chat);
+
+      txt_chat.text = '';
+    }
   }
 
   String chatParticipant(

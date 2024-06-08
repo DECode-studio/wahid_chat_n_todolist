@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:wahid_chat_n_todolist/controller/page/main_page_controller.dart';
-import 'package:wahid_chat_n_todolist/page/task/main.dart';
 import 'package:wahid_chat_n_todolist/style/box.dart';
 import 'package:wahid_chat_n_todolist/style/color.dart';
 
+import '../../chat/main.dart';
 import '../../inbox/main.dart';
+import '../../task/main.dart';
 
 Widget windowView(
   MainPageController controller,
@@ -19,16 +20,17 @@ Widget windowView(
               width: controller.getSize(size.height),
               decoration: customRoundedShadowStyle(color: white),
               margin: const EdgeInsets.only(bottom: 100, right: 20),
-              child: controller.viewWindow.value == 'inbox'
-                  ? ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: const MainInboxPage(),
-                    )
-                  : controller.viewWindow.value == 'task'
-                      ? ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: const MainTaskPage(),
-                        )
-                      : Container(),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: controller.viewWindow.value == 'inbox' &&
+                        controller.detailWindow.value == ''
+                    ? MainInboxPage(controller: controller)
+                    : controller.viewWindow.value == 'inbox' &&
+                            controller.detailWindow.value != ''
+                        ? ChatPage(controller: controller)
+                        : controller.viewWindow.value == 'task'
+                            ? const MainTaskPage()
+                            : Container(),
+              ),
             ),
           );
