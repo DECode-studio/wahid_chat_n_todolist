@@ -6,6 +6,8 @@ import 'package:wahid_chat_n_todolist/style/box.dart';
 import 'package:wahid_chat_n_todolist/style/color.dart';
 import 'package:wahid_chat_n_todolist/style/text.dart';
 
+import 'menu.dart';
+
 Widget cardData(
   ChatPageController controller,
   ChatModel data,
@@ -36,32 +38,50 @@ Widget cardData(
         const SizedBox(
           height: 5,
         ),
-        Container(
-          padding: const EdgeInsets.all(10),
-          margin: const EdgeInsets.only(bottom: 15),
-          decoration: customRoundedShadowStyle(
-            color: (data.idSender == '1' ? purple : yellow).withAlpha(200),
-            size: 10,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                data.dataChat ?? '',
-                style: normal_12_1,
-                textAlign: TextAlign.left,
+        Row(
+          mainAxisAlignment: data.idSender != '1'
+              ? MainAxisAlignment.start
+              : MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            data.idSender != '1'
+                ? Container()
+                : menuButton(controller: controller),
+            Flexible(
+              fit: FlexFit.loose,
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.only(bottom: 15),
+                decoration: customRoundedShadowStyle(
+                  color:
+                      (data.idSender == '1' ? purple : yellow).withAlpha(200),
+                  size: 10,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      data.dataChat ?? '',
+                      style: normal_12_1,
+                      textAlign: TextAlign.left,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      timeFormater(data.createChat),
+                      style: normal_10_1,
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                timeFormater(data.createChat),
-                style: normal_10_1,
-                textAlign: TextAlign.left,
-              ),
-            ],
-          ),
+            ),
+            data.idSender == '1'
+                ? Container()
+                : menuButton(controller: controller)
+          ],
         )
       ],
     );

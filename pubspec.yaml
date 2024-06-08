@@ -57,6 +57,9 @@ dependencies:
   # widget library
   cached_network_image: ^3.3.1
   flutter_spinkit: ^5.2.1
+  sticky_grouped_list: ^3.1.0
+  chat_bubbles: ^1.6.0
+  toggle_list: ^0.3.1
 
 dev_dependencies:
   flutter_test:

@@ -3,6 +3,7 @@ class TaskModel {
   String? idUser;
   String? nameTask;
   String? descTask;
+  DateTime? targetTime;
   bool? statusTask;
   bool? availableText;
   DateTime? createTask;
@@ -12,6 +13,7 @@ class TaskModel {
     this.idUser,
     this.nameTask,
     this.descTask,
+    this.targetTime,
     this.statusTask,
     this.availableText,
     this.createTask,
@@ -22,7 +24,8 @@ class TaskModel {
     idUser = json['idUser'];
     nameTask = json['nameTask'];
     descTask = json['descTask'];
-    descTask = json['descTask'];
+    targetTime = json['targetTime'];
+    statusTask = json['statusTask'];
     availableText = json['availableText'];
     createTask =
         json['createTask'] != null ? DateTime.parse(json['createTask']) : null;
@@ -35,6 +38,7 @@ class TaskModel {
     data['idUser'] = idUser;
     data['nameTask'] = nameTask;
     data['descTask'] = descTask;
+    data['targetTime'] = targetTime;
     data['statusTask'] = statusTask;
     data['availableText'] = availableText;
     data['createTask'] = createTask?.toIso8601String();

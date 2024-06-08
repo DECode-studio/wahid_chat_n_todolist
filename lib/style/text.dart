@@ -765,6 +765,41 @@ TextStyle bold_15_6(Color color) => GoogleFonts.inter(
       fontWeight: FontWeight.bold,
     );
 
+var bold_line_15_1 = GoogleFonts.inter(
+  color: mainText,
+  fontSize: 15,
+  fontWeight: FontWeight.bold,
+  decoration: TextDecoration.lineThrough,
+);
+
+var bold_line_15_2 = GoogleFonts.inter(
+  color: secondText,
+  fontSize: 15,
+  fontWeight: FontWeight.bold,
+  decoration: TextDecoration.lineThrough,
+);
+
+var bold_line_15_3 = GoogleFonts.inter(
+  color: thirdText,
+  fontSize: 15,
+  fontWeight: FontWeight.bold,
+  decoration: TextDecoration.lineThrough,
+);
+
+var bold_line_15_4 = GoogleFonts.inter(
+  color: mainColor_1,
+  fontSize: 15,
+  fontWeight: FontWeight.bold,
+  decoration: TextDecoration.lineThrough,
+);
+
+var bold_line_15_5 = GoogleFonts.inter(
+  color: mainColor_2,
+  fontSize: 15,
+  fontWeight: FontWeight.bold,
+  decoration: TextDecoration.lineThrough,
+);
+
 var normal_15_1 = GoogleFonts.inter(
   color: mainText,
   fontSize: 15,
@@ -992,6 +1027,12 @@ var normal_10_5 = GoogleFonts.inter(
   fontSize: 10,
   fontWeight: FontWeight.normal,
 );
+
+TextStyle normal_10_6(Color color) => GoogleFonts.inter(
+      color: color,
+      fontSize: 10,
+      fontWeight: FontWeight.normal,
+    );
 
 var thin_10_1 = GoogleFonts.inter(
   color: mainText,

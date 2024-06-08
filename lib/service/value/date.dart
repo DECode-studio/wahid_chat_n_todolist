@@ -57,3 +57,9 @@ DateTime nearestDateTime_2(List<DateTime> dateTimeList) {
 
   return nearest;
 }
+
+int calculateDaysDifference(DateTime targetDate) {
+  DateTime now = DateTime.now();
+  Duration difference = targetDate.difference(now);
+  return difference.inDays + 1;
+}

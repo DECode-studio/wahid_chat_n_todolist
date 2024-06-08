@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sticky_grouped_list/sticky_grouped_list.dart';
 import 'package:uuid/uuid.dart';
 import 'package:wahid_chat_n_todolist/controller/data/local/chat.dart';
 import 'package:wahid_chat_n_todolist/controller/data/local/inbox.dart';
@@ -15,6 +16,7 @@ import 'package:wahid_chat_n_todolist/service/function/delay.dart';
 class ChatPageController extends GetxController {
   final MainPageController? controller;
   ChatPageController({this.controller});
+  final scrollController = GroupedItemScrollController();
 
   var roomData = RoomModel().obs;
   var listChat = <ChatModel>[].obs;
@@ -24,6 +26,7 @@ class ChatPageController extends GetxController {
   var txt_chat = TextEditingController();
 
   var loadData = true.obs;
+  var loadShow = false.obs;
 
   @override
   void onInit() {
@@ -53,6 +56,11 @@ class ChatPageController extends GetxController {
 
     await syncDelay(value: 2000);
     loadData.value = false;
+
+    asyncDelay(
+      value: 500,
+      func: () => scrollController.jumpTo(index: listChat.length - 1),
+    );
   }
 
   void actionMethod(String mode) {
@@ -79,6 +87,34 @@ class ChatPageController extends GetxController {
       chatLocalData.add(chat);
 
       txt_chat.text = '';
+      scrollController.jumpTo(index: listChat.length - 1);
+
+      loadData.value = true;
+      loadData.value = false;
+      loadShow.value = true;
+
+      asyncDelay(
+        value: 2000,
+        func: () {
+          var chat = ChatModel(
+            idChat: const Uuid().v4(),
+            idRoom: roomData.value.idRoom,
+            idSender:
+                listParticipant.where((e) => e.idUser != '1').first.idUser,
+            dataChat: 'Excuse me, is there anything I can help you with?',
+            createChat: DateTime.now(),
+            statusChat: true,
+          );
+
+          listChat.add(chat);
+          chatLocalData.add(chat);
+          scrollController.jumpTo(index: listChat.length - 1);
+
+          loadShow.value = false;
+          loadData.value = true;
+          loadData.value = false;
+        },
+      );
     }
   }
 

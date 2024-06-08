@@ -18,6 +18,7 @@ Widget chatField(
               icon: FluentIcons.chat_32_filled,
               inputType: TextInputType.text,
               hint: 'Search',
+              onSubmit: (_) => controller.actionMethod('send'),
             ),
           ),
           const SizedBox(
