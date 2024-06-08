@@ -7,6 +7,7 @@ import 'package:wahid_chat_n_todolist/style/color.dart';
 import 'package:wahid_chat_n_todolist/style/text.dart';
 
 import 'menu.dart';
+import 'reff.dart';
 
 Widget cardData(
   ChatPageController controller,
@@ -38,6 +39,7 @@ Widget cardData(
         const SizedBox(
           height: 5,
         ),
+        reffChatBaloon(controller, data, size),
         Row(
           mainAxisAlignment: data.idSender != '1'
               ? MainAxisAlignment.start
@@ -46,7 +48,10 @@ Widget cardData(
           children: [
             data.idSender != '1'
                 ? Container()
-                : menuButton(controller: controller),
+                : menuButton(
+                    controller,
+                    data,
+                  ),
             Flexible(
               fit: FlexFit.loose,
               child: Container(
@@ -80,7 +85,10 @@ Widget cardData(
             ),
             data.idSender == '1'
                 ? Container()
-                : menuButton(controller: controller)
+                : menuButton(
+                    controller,
+                    data,
+                  )
           ],
         )
       ],

@@ -2,6 +2,7 @@ class ChatModel {
   String? idChat;
   String? idRoom;
   String? idSender;
+  String? reffChat;
   String? dataChat;
   bool? statusChat;
   DateTime? createChat;
@@ -10,6 +11,7 @@ class ChatModel {
     this.idChat,
     this.idRoom,
     this.idSender,
+    this.reffChat,
     this.dataChat,
     this.statusChat,
     this.createChat,
@@ -19,6 +21,7 @@ class ChatModel {
     idChat = json['idChat'];
     idRoom = json['idRoom'];
     idSender = json['idSender'];
+    reffChat = json['reffChat'];
     dataChat = json['dataChat'];
     statusChat = json['statusChat'];
     createChat =
@@ -31,6 +34,7 @@ class ChatModel {
     data['idChat'] = idChat;
     data['idRoom'] = idRoom;
     data['idSender'] = idSender;
+    data['reffChat'] = reffChat;
     data['dataChat'] = dataChat;
     data['statusChat'] = statusChat;
     data['createChat'] = createChat?.toIso8601String();

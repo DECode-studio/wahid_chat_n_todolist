@@ -1,17 +1,21 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:wahid_chat_n_todolist/controller/page/chat_page_controller.dart';
+import 'package:wahid_chat_n_todolist/model/chat.dart';
 import 'package:wahid_chat_n_todolist/style/color.dart';
 import 'package:wahid_chat_n_todolist/style/text.dart';
 
-Widget menuButton({
-  required ChatPageController controller,
-}) =>
+Widget menuButton(
+  ChatPageController controller,
+  ChatModel data,
+) =>
     PopupMenuButton(
       onSelected: (result) {
         if (result == 1) {}
 
-        if (result == 2) {}
+        if (result == 2) {
+          controller.actionMethod('reply', data: data.idChat);
+        }
       },
       itemBuilder: (context) => [
         PopupMenuItem(

@@ -24,6 +24,7 @@ class ChatPageController extends GetxController {
   var listUser = <UserModel>[].obs;
 
   var txt_chat = TextEditingController();
+  var reffChat = ''.obs;
 
   var loadData = true.obs;
   var loadShow = false.obs;
@@ -63,7 +64,10 @@ class ChatPageController extends GetxController {
     );
   }
 
-  void actionMethod(String mode) {
+  void actionMethod(
+    String mode, {
+    dynamic data,
+  }) {
     if (mode == 'back') {
       controller?.detailWindow.value = '';
     }
@@ -73,11 +77,16 @@ class ChatPageController extends GetxController {
       controller?.detailWindow.value = '';
     }
 
+    if (mode == 'reply') {
+      reffChat.value = data.toString();
+    }
+
     if (mode == 'send') {
       var chat = ChatModel(
         idChat: const Uuid().v4(),
         idRoom: roomData.value.idRoom,
         idSender: '1',
+        reffChat: reffChat.value == '' ? null : reffChat.value,
         dataChat: txt_chat.text,
         createChat: DateTime.now(),
         statusChat: true,
@@ -87,6 +96,7 @@ class ChatPageController extends GetxController {
       chatLocalData.add(chat);
 
       txt_chat.text = '';
+      reffChat.value = '';
       scrollController.jumpTo(index: listChat.length - 1);
 
       loadData.value = true;
@@ -132,5 +142,11 @@ class ChatPageController extends GetxController {
 
       return user.nameUser ?? '';
     }
+  }
+
+  ChatModel replyChat({String? idReff}) {
+    var chat =
+        listChat.where((e) => e.idChat == (idReff ?? reffChat.value)).first;
+    return chat;
   }
 }

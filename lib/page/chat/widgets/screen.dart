@@ -8,6 +8,7 @@ import 'package:wahid_chat_n_todolist/widgets/load/load.dart';
 import 'card.dart';
 import 'chat.dart';
 import 'header.dart';
+import 'reff.dart';
 import 'separator.dart';
 import 'toast.dart';
 
@@ -40,6 +41,7 @@ Widget screenPage(
                           order: StickyGroupedListOrder.ASC,
                         ),
                       ),
+                      reffChat(controller, size),
                       loadToast(controller, size),
                     ],
                   ),
